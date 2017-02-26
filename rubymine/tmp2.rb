@@ -2,7 +2,7 @@ root_parent, root_hash, root_name = [1, 1, "A"]
 @root_name = root_name
 
 # parent_hash, node_hash, node_name
-raw                               = [
+names                               = [
     [1, 1, 'A'],
     [1, 2, 'B'],
     [2, 3, 'C'],
@@ -22,27 +22,25 @@ A::E::F
 =end
 
 puts "Raw data:"
-puts raw.inspect
+puts names.inspect
 
-node_hash_to_name = {}
+hash_to_name = {}
 
-raw.each do |element|
-  _ele_parent, ele_hash, ele_name = *element
-  node_hash_to_name[ele_hash]     = ele_name
+names.each do |_, node_hash, name|
+  hash_to_name[node_hash] = name
 end
-
 
 puts '---'
 puts "Node hash to name:"
-puts node_hash_to_name
+puts hash_to_name
 puts '---'
 
 node_hierarchy = {}
-raw.each do |element|
+names.each do |element|
   ele_parent, ele_hash, ele_name = *element
   next if ele_hash == root_hash
 
-  parent_name                           = node_hash_to_name[ele_parent]
+  parent_name                           = hash_to_name[ele_parent]
   node_hierarchy[parent_name]           ||= {}
   node_hierarchy[parent_name][ele_name] ||= []
 end
@@ -69,8 +67,6 @@ puts '----'
 
 # Node hierarchy
 # {"A"=>{"B"=>{"C"=>{"G"=>[]}, "D"=>[]}, "E"=>{"F"=>[]}}}
-
-# todo: walk node until we reach [], output path, then delete node. repeat.
 
 @keys = []
 def inspect_hash(parent, hash)
