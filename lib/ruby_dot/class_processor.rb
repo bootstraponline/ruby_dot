@@ -110,7 +110,7 @@ module RubyDot
 
       # --
       node_hierarchy.dup.each do |element, children|
-        children.dup.each do |child_name, child_children|
+        children.dup.each do |child_name, _child_children|
           if node_hierarchy[child_name]
             node_hierarchy[element][child_name] = node_hierarchy[child_name]
           end
@@ -120,24 +120,25 @@ module RubyDot
       node_hierarchy.keys.each { |key| node_hierarchy.delete key unless key == root_name }
       # --
 
-      @output = []
-
-      @keys = []
-
-      def inspect_hash(path, hash)
+      # path   - accumulator
+      # hash   - hash to parse
+      # result - array of strings
+      def inspect_hash(opts={})
+        path   = opts.fetch :path, []
+        hash   = opts.fetch :hash
+        result = opts.fetch :result, []
         hash.each do |key, value|
           if value.is_a?(Hash)
-            inspect_hash(path + [key], value)
+            inspect_hash(path: path + [key], hash: value, result: result)
           else
-            @output << (path + [key]).join('::')
-            puts @output
+            result << (path + [key]).join('::')
           end
         end
+
+        result
       end
 
-      inspect_hash @output, node_hierarchy
-
-      @output
+      inspect_hash hash: node_hierarchy
     end
 
     def process_module(node)
