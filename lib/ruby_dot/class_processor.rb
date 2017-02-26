@@ -122,13 +122,14 @@ module RubyDot
       # path   - accumulator
       # hash   - hash to parse
       # result - array of strings
-      def inspect_hash(opts={})
+      def collect_hash_keys(opts={})
         path   = opts.fetch :path, []
         hash   = opts.fetch :hash
         result = opts.fetch :result, []
         hash.each do |key, value|
           if value.is_a?(Hash)
-            inspect_hash(path: path + [key], hash: value, result: result)
+            # concat path array with key array
+            collect_hash_keys(path: path + [key], hash: value, result: result)
           else
             result << (path + [key]).join('::')
           end
@@ -137,7 +138,7 @@ module RubyDot
         result
       end
 
-      inspect_hash hash: node_hierarchy
+      collect_hash_keys hash: node_hierarchy
     end
 
     def process_module(node)
