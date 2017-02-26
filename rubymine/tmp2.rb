@@ -68,23 +68,34 @@ puts '----'
 # Node hierarchy
 # {"A"=>{"B"=>{"C"=>{"G"=>[]}, "D"=>[]}, "E"=>{"F"=>[]}}}
 
-@keys = []
-def inspect_hash(parent, hash)
-  @last_parent = parent
+# @keys = []
+# def inspect_hash(parent, hash)
+#   @last_parent = parent
+#   hash.each do |key, value|
+#     if value.is_a?(Hash)
+#       @keys << key
+#       inspect_hash(key, value)
+#     else
+#       @keys << parent if @last_parent != @keys.last
+#       @keys << key
+#       puts "#{@keys.join '::'}"
+#       @keys = [@root_name]
+#     end
+#   end
+# end
+
+
+def inspect_hash(path, hash)
   hash.each do |key, value|
     if value.is_a?(Hash)
-      @keys << key
-      inspect_hash(key, value)
+      inspect_hash(path + [key], value)
     else
-      @keys << parent if @last_parent != @keys.last
-      @keys << key
-      puts "#{@keys.join '::'}"
-      @keys = [@root_name]
+      puts "#{(path + [key]).join '::'}"
     end
   end
 end
 
-inspect_hash nil, node_hierarchy
+inspect_hash [], node_hierarchy
 
 # Goal:
 # A::B::C::G

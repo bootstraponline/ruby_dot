@@ -124,22 +124,18 @@ module RubyDot
 
       @keys = []
 
-      def inspect_hash(parent, hash)
-        @last_parent = parent
+      def inspect_hash(path, hash)
         hash.each do |key, value|
           if value.is_a?(Hash)
-            @keys << key
-            inspect_hash(key, value)
+            inspect_hash(path + [key], value)
           else
-            @keys << parent if @last_parent != @keys.last && parent != @root_name
-            @keys << key
-            @output << @keys.join('::')
-            @keys = [@root_name]
+            @output << (path + [key]).join('::')
+            puts @output
           end
         end
       end
 
-      inspect_hash nil, node_hierarchy
+      inspect_hash @output, node_hierarchy
 
       @output
     end
