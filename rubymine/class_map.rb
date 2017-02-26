@@ -7,7 +7,7 @@
   "class_processor.rb": {
     "modules": [
       "RubyDot::ClassProcessor",
-      "RubyDot::::Parser::AST::Processor"
+      "RubyDot::Parser::AST::Processor"
     ]
   },
   "main.rb": {

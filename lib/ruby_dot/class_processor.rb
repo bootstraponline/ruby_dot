@@ -43,7 +43,7 @@ module RubyDot
 
       while node
         children, const = *node
-        const_array.unshift const
+        const_array.unshift const if const
         node = children
       end
 
@@ -77,7 +77,6 @@ module RubyDot
         _process_node last_parent: last_parent, parent: current_node, current_node: child_node, names: names
       end
     end
-
 
     def _get_node_name(start_node)
       start_node_hash = start_node.hash
