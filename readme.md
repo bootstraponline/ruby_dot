@@ -1,3 +1,5 @@
+# ruby_dot [![Build Status](https://travis-ci.org/bootstraponline/ruby_dot.svg?branch=master)](https://travis-ci.org/bootstraponline/ruby_dot)
+
 #### Export Ruby class diagrams on draw.io
 
 Currently ruby_dot is able to parse file names, modules, and classes.
