@@ -15,6 +15,11 @@
       "RubyDot::Main"
     ]
   },
+  "render.rb": {
+    "modules": [
+      "RubyDot::Render"
+    ]
+  },
   "ruby_dot.rb": {
   }
 }

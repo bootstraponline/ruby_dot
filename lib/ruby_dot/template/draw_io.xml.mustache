@@ -6,14 +6,15 @@
     <mxCell id="0"/>
     <mxCell id="1" parent="0"/>
 
-    <!-- cells with absolute positioning
-    <mxCell id="2" value="hello&lt;div&gt;there&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;"
+
+{{#file_array}}
+
+    <mxCell id="{{id}}" value="{{{value}}}" style="rounded=1;whiteSpace=wrap;html=1;"
             vertex="1" parent="1">
-      <mxGeometry x="10" y="10" width="120" height="60" as="geometry"/>
+        <mxGeometry x="{{x}}" y="{{y}}" width="120" height="60" as="geometry"/>
     </mxCell>
-    <mxCell id="3" value="hi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
-      <mxGeometry x="10" y="90" width="120" height="60" as="geometry"/>
-    </mxCell>
-     -->
+
+{{/file_array}}
+
   </root>
 </mxGraphModel>

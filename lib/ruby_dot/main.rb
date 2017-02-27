@@ -1,6 +1,8 @@
 module RubyDot
   class Main
 
+    # file_glob - file glob of Ruby files
+    # @return [Hash] hash of found classes/modules keyed on file name
     def run file_glob
       files_to_parse = Dir.glob(file_glob)
 

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="893" dy="475" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1"
+              pageScale="1" pageWidth="850" pageHeight="1100" background="#ffffff" math="0" shadow="0">
+  <root>
+    <!-- required root nodes -->
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+
+
+    <mxCell id="2" value="&lt;b&gt;class_parser.rb&lt;/b&gt;&lt;div&gt;RubyDot::ClassParser&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;"
+            vertex="1" parent="1">
+        <mxGeometry x="140.0" y="10" width="120" height="60" as="geometry"/>
+    </mxCell>
+
+
+    <mxCell id="4" value="&lt;b&gt;class_processor.rb&lt;/b&gt;&lt;div&gt;RubyDot::ClassProcessor
+RubyDot::Parser::AST::Processor&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;"
+            vertex="1" parent="1">
+        <mxGeometry x="280.0" y="10" width="120" height="60" as="geometry"/>
+    </mxCell>
+
+
+    <mxCell id="6" value="&lt;b&gt;main.rb&lt;/b&gt;&lt;div&gt;RubyDot::Main&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;"
+            vertex="1" parent="1">
+        <mxGeometry x="420.0" y="10" width="120" height="60" as="geometry"/>
+    </mxCell>
+
+
+    <mxCell id="8" value="&lt;b&gt;render.rb&lt;/b&gt;&lt;div&gt;RubyDot::Render&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;"
+            vertex="1" parent="1">
+        <mxGeometry x="560.0" y="10" width="120" height="60" as="geometry"/>
+    </mxCell>
+
+
+    <mxCell id="10" value="&lt;b&gt;ruby_dot.rb&lt;/b&gt;&lt;div&gt;&lt;/div&gt;" style="rounded=1;whiteSpace=wrap;html=1;"
+            vertex="1" parent="1">
+        <mxGeometry x="700.0" y="10" width="120" height="60" as="geometry"/>
+    </mxCell>
+
+    <!-- cells with absolute positioning
+
+    <mxCell id="3" value="hi" style="rounded=1;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+      <mxGeometry x="10" y="90" width="120" height="60" as="geometry"/>
+    </mxCell>
+     -->
+  </root>
+</mxGraphModel>
