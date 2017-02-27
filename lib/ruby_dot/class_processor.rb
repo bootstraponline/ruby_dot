@@ -21,6 +21,9 @@ module RubyDot
     def get_name node
       raise 'Node is not a const!' unless node.type == :const
 
+      # loc.name doesn't recurse (module H::I::J)
+      # name = node.loc.name.source
+
       const_array = []
 
       while node
