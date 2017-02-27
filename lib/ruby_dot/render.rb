@@ -6,7 +6,7 @@ module RubyDot
     def draw_io_xml hash
       file_array = []
 
-      id     = 1
+      id     = 2 # must start at 2 (0, 1 reserved for root nodes)
       width  = 180
       height = 60
 
@@ -19,7 +19,7 @@ module RubyDot
 
       hash.each do |key, value|
         file_name = key
-        names   = Array(value[:names])
+        names     = Array(value[:names])
 
         if row >= row_limit
           row    = 0
@@ -37,7 +37,7 @@ module RubyDot
         # value is rendered without escaping using {{{ }}} in the mustache template
         file_description = names.join "\n"
         file_array << {
-            id:     id+=1,
+            id:     id,
             value:  "&lt;b&gt;#{file_name}&lt;/b&gt;&lt;div&gt;#{file_description}&lt;/div&gt;",
             x:      x,
             y:      y,
@@ -45,7 +45,7 @@ module RubyDot
             height: height
         }
 
-        id += 1
+        id  += 1
         row += 1
       end
 
