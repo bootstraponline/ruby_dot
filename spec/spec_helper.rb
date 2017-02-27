@@ -1,5 +1,5 @@
 require 'rubygems'
 require 'rspec'
-require 'JSON'
+require 'json'
 
 require_relative '../lib/ruby_dot'
