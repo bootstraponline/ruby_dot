@@ -7,19 +7,11 @@ module RubyDot
 
     def initialize
       super
-      @state   = []
-      @state_h = []
-      @known_h = [] # don't save same hash multiple times
-      @names   = []
-      @debug   = false # enable for debugging
+      reset
     end
 
     def log(*args)
       puts(*args) if @debug
-    end
-
-    def class_names
-      []
     end
 
     def names
@@ -85,8 +77,11 @@ module RubyDot
     end
 
     def reset
-      @state.clear
-      @names.clear
+      @state   = []
+      @state_h = []
+      @known_h = [] # don't save same hash multiple times
+      @names   = []
+      @debug   = false # enable for debugging
     end
 
     alias on_class process_class
