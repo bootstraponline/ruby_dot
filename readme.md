@@ -1,6 +1,6 @@
 #### Export Ruby class diagrams on draw.io
 
-Current ruby_dot is able to parse file names, modules, and classes.
+Currently ruby_dot is able to parse file names, modules, and classes.
 A node is generated for each file which contains a description of the modules/classes.
 These nodes can then be manipulated using [draw.io](https://www.draw.io/)
 
