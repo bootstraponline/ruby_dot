@@ -1,22 +1,21 @@
 {
   "class_parser.rb": {
-    "modules": [
+    "names": [
       "RubyDot::ClassParser"
     ]
   },
   "class_processor.rb": {
-    "modules": [
-      "RubyDot::ClassProcessor",
-      "RubyDot::Parser::AST::Processor"
+    "names": [
+      "RubyDot::ClassProcessor"
     ]
   },
   "main.rb": {
-    "modules": [
+    "names": [
       "RubyDot::Main"
     ]
   },
   "render.rb": {
-    "modules": [
+    "names": [
       "RubyDot::Render"
     ]
   },

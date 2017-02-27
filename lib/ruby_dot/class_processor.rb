@@ -11,6 +11,11 @@ module RubyDot
       @state_h = []
       @known_h = [] # don't save same hash multiple times
       @names   = []
+      @debug   = false # enable for debugging
+    end
+
+    def log(*args)
+      puts(*args) if @debug
     end
 
     def class_names
@@ -41,7 +46,7 @@ module RubyDot
       node_hash_string  = node_hash.abs.to_s(16)[0..4]
       name              = get_name(name_const)
 
-      puts "before: node: #{name} hash: #{node_hash_string} state: #{@state}"
+      log "before: node: #{name} hash: #{node_hash_string} state: #{@state}"
       # before node is processed
       @state << name
       @state_h << node_hash
@@ -49,19 +54,19 @@ module RubyDot
       # process node
       original_node = process_regular_node(node)
 
-      puts "after:  node: #{name} hash: #{node_hash_string} state: #{@state}"
+      log "after:  node: #{name} hash: #{node_hash_string} state: #{@state}"
 
 
       # after node is processed
       if node_hash == @state_h.first
         @names << @state.join('::') unless @known_h.include? node_hash
-        puts "saved: #{@names.last} first hash"
+        log "saved: #{@names.last} first hash"
         @known_h.concat(@state_h)
         @state.clear
         @state_h.clear
       elsif node_hash == @state_h.last
         @names << @state.join('::') unless @known_h.include? node_hash
-        puts "saved: #{@names.last} last hash"
+        log "saved: #{@names.last} last hash"
 
         @state.pop
         @state_h.pop

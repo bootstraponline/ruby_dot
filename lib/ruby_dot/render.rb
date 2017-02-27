@@ -19,8 +19,7 @@ module RubyDot
 
       hash.each do |key, value|
         file_name = key
-        modules   = Array(value[:modules])
-        classes   = Array(value[:classes])
+        names   = Array(value[:names])
 
         if row >= row_limit
           row    = 0
@@ -36,10 +35,10 @@ module RubyDot
         y                = column * space_y
 
         # value is rendered without escaping using {{{ }}} in the mustache template
-        file_description = [modules + classes]
+        file_description = names.join "\n"
         file_array << {
             id:     id+=1,
-            value:  "&lt;b&gt;#{file_name}&lt;/b&gt;&lt;div&gt;#{file_description.join "\n"}&lt;/div&gt;",
+            value:  "&lt;b&gt;#{file_name}&lt;/b&gt;&lt;div&gt;#{file_description}&lt;/div&gt;",
             x:      x,
             y:      y,
             width:  width,
