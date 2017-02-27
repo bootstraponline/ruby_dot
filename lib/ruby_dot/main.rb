@@ -16,11 +16,9 @@ module RubyDot
 
         # Don't allow duplicate file names (same file name @ different path)
         raise "Duplicate file name #{file_name}" if file_class_hash[file_name]
-        file_class_hash[file_name]           ||= {}
-        result_classes                       = results.class_names
-        result_modules                       = results.module_names
-        file_class_hash[file_name][:classes] = result_classes unless result_classes.empty?
-        file_class_hash[file_name][:modules] = result_modules unless result_modules.empty?
+        file_class_hash[file_name]         ||= {}
+        result_names                       = results.names
+        file_class_hash[file_name][:names] = result_names unless result_names.empty?
       end
 
       file_class_hash
