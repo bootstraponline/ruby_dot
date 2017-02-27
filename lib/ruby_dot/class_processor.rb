@@ -128,7 +128,8 @@ module RubyDot
         result = opts.fetch :result, []
         hash.each do |key, value|
           if value.is_a?(Hash)
-            # concat path array with key array
+            # concat path array with key array to create a new array object
+            # appending will reuse the existing array object and give invalid results
             collect_hash_keys(path: path + [key], hash: value, result: result)
           else
             result << (path + [key]).join('::')
