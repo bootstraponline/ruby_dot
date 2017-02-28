@@ -10,6 +10,14 @@ module RubyDot
       reset
     end
 
+    def reset
+      @state   = []
+      @state_h = []
+      @known_h = [] # don't save same hash multiple times
+      @names   = []
+      @debug   = false # enable for debugging
+    end
+
     def log(*args)
       puts(*args) if @debug
     end
@@ -41,7 +49,28 @@ module RubyDot
       node_hash_string  = node_hash.abs.to_s(16)[0..4]
       name              = get_name(name_const)
 
-      log "before: node: #{name} hash: #{node_hash_string} state: #{@state}"
+      const_type, = *name_const
+
+      # module A
+      #   module ::B # cbase
+      #   end
+      # end
+      #
+      # [A, B] not [A::B]
+      cbase       = const_type && const_type.type == :cbase
+
+      log "before: node: #{name} hash: #{node_hash_string} state: #{@state} cbase: #{cbase}"
+
+      if cbase
+        unless @known_h.include? node_hash
+          @names << @state.join('::')
+          log "saved: #{@names.last} cbase: #{cbase}"
+        end
+        @known_h.concat(@state_h)
+        @state.clear
+        @state_h.clear
+      end
+
       # before node is processed
       @state << name
       @state_h << node_hash
@@ -49,19 +78,23 @@ module RubyDot
       # process node
       original_node = process_regular_node(node)
 
-      log "after:  node: #{name} hash: #{node_hash_string} state: #{@state}"
+      log "after:  node: #{name} hash: #{node_hash_string} state: #{@state} cbase: #{cbase}"
 
 
       # after node is processed
       if node_hash == @state_h.first
-        @names << @state.join('::') unless @known_h.include? node_hash
-        log "saved: #{@names.last} first hash"
+        unless @known_h.include? node_hash
+          @names << @state.join('::')
+          log "saved: #{@names.last} first hash"
+        end
         @known_h.concat(@state_h)
         @state.clear
         @state_h.clear
       elsif node_hash == @state_h.last
-        @names << @state.join('::') unless @known_h.include? node_hash
-        log "saved: #{@names.last} last hash"
+        unless @known_h.include? node_hash
+          @names << @state.join('::')
+          log "saved: #{@names.last} last hash"
+        end
 
         @state.pop
         @state_h.pop
@@ -77,14 +110,6 @@ module RubyDot
 
     def process_module(node)
       _find_name node
-    end
-
-    def reset
-      @state   = []
-      @state_h = []
-      @known_h = [] # don't save same hash multiple times
-      @names   = []
-      @debug   = false # enable for debugging
     end
 
     alias on_class process_class

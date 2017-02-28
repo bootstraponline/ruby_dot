@@ -48,11 +48,6 @@ describe 'parse' do
   it 'parses modules correctly 4' do
     class_map = RubyDot::Main.new.run module_fail 4
 
-    # A::B::C
-    # A::B::D
-    # A::E::F
-
-    # broken
     expect(class_map).to eq(
                              { 'module_fail4.rb' => {
                                  :names =>
@@ -65,7 +60,6 @@ describe 'parse' do
   it 'parses modules correctly 5' do
     class_map = RubyDot::Main.new.run module_fail 5
 
-    # broken
     expect(class_map).to eq(
                              { 'module_fail5.rb' => { :names =>
                                                           ['A::B',
@@ -86,17 +80,20 @@ describe 'parse' do
   it 'parses modules correctly 7' do
     class_map = RubyDot::Main.new.run module_fail 7
 
-    # broken
     expect(class_map).to eq({
                                 'module_fail7.rb' =>
                                     { :names => ['A::B1::C1::D1::E1',
                                                    'A::B2::C2::D2',
                                                    'A::B3::C3',
                                                    'A::B4'] } })
+  end
 
-    # A::B1::C1::D1::E1
-    # A::B2::C2::D2
-    # A::B3:C3
-    # A::B4
+  it 'parses modules correctly 8' do
+    # handles cbase
+    class_map = RubyDot::Main.new.run module_fail 8
+
+    expect(class_map).to eq({
+                                'module_fail8.rb' =>
+                                    { :names => ['A', 'B', 'C', 'D::E'] } })
   end
 end
